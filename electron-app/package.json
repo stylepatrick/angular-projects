@@ -1,5 +1,5 @@
 {
-  "name": "electron-wysiwig-editor",
+  "name": "electron-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,9 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start:desktop": "concurrently \"ng build --delete-output-path=false--watch\" \"webpack --config webpack.dev.config.js --watch\"",
+    "start:desktop": "concurrently \"ng build --delete-output-path=false --watch\" \"webpack --config webpack.dev.config.js --watch\"",
     "build:electron": "ng build && webpack --config webpack.prod.config.js",
-    "package": "electron-packager dist/electron-wysiwig-editor --out=dist --asar",
+    "package": "electron-packager dist/electron-app --out=dist",
     "electron": "ng build && webpack --config webpack.prod.config.js && electron ."
   },
   "private": true,
@@ -22,8 +22,7 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
-    "ngx-electronyzer": "^19.0.0",
-    "ngx-wig": "^18.1.6",
+    "electron-packager": "^17.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -33,9 +32,7 @@
     "@angular/cli": "^19.0.6",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
-    "concurrently": "^9.1.0",
     "electron": "^33.2.1",
-    "electron-packager": "^17.1.2",
     "jasmine-core": "~5.4.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

@@ -1,4 +1,4 @@
 {
-  "name": "my-editor",
+  "name": "electron-wysiwig-editor",
   "main": "main.js"
 }
