@@ -38,7 +38,7 @@ import {MessageModule} from 'primeng/message';
             <label>Tage</label>
           </span>
         </div>
-        <div *ngIf="isUsernamePresent()" class="col-12 p-fluid">
+        <div *ngIf="isUsernamePresent() && !editMode" class="col-12 p-fluid">
           <p-message severity="info" text="Name bereits vorhanden!"
                      styleClass="p-mr-2">
           </p-message>
@@ -47,7 +47,7 @@ import {MessageModule} from 'primeng/message';
       <p-footer>
         <p-button icon="pi pi-save" styleClass="p-button-primary mr-2 mb-2"
                   label="Speichern"
-                  [disabled]="tip?.days == null || tip?.username == null || isUsernamePresent()"
+                  [disabled]="tip?.days == null || tip?.username == null || (isUsernamePresent() && !editMode)"
                   (onClick)="onSave()"
         ></p-button>
         <p-button icon="pi pi-times" styleClass="p-button-outlined mr-2 mb-2"
