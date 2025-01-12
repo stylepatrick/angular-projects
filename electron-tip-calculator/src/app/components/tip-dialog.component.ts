@@ -22,7 +22,7 @@ import {MessageModule} from 'primeng/message';
   ],
   template: `
     <p-dialog header="Hinzufügen" [modal]="true"
-              [(visible)]="visible" [style]="{width: '35vw'}"
+              [(visible)]="visible" [style]="{width: '90vw'}"
               (onHide)="onCancel()">
       <div *ngIf="tip" class="grid" style="padding-top: 1.2rem">
         <div class="col-12 p-fluid">

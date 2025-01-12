@@ -22,7 +22,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
   ],
   template: `
     <div class="card grid p-fluid">
-      <div class="col-2">
+      <div class="col-12 md:col-6 lg:col-2" style="padding-top: 1em">
         <span class="p-float-label">
             <p-inputNumber [(ngModel)]="tipHead.totTip" mode="decimal" [min]="1"
                            [maxFractionDigits]="2" [showButtons]="false"
@@ -31,7 +31,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
             <label>Trinkgeld</label>
           </span>
       </div>
-      <div class="col-2">
+      <div class="col-12 md:col-6 lg:col-2" style="padding-top: 1em">
         <span class="p-float-label">
             <p-inputNumber [(ngModel)]="tipHead.totDays" mode="decimal" [showButtons]="false"
                            [disabled]="true">
@@ -42,7 +42,6 @@ import {InputNumberModule} from 'primeng/inputnumber';
 
       <div class="col-12">
         <p-table [value]="tipHead?.tips"
-                 [tableStyle]="{ 'min-width': '50rem' }"
                  [autoLayout]="true"
                  styleClass="p-datatable-sm p-datatable-striped">
           <ng-template pTemplate="header">
