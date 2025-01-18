@@ -7,10 +7,11 @@ import {CommonModule} from '@angular/common';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {MessageModule} from 'primeng/message';
+import {FloatLabel} from 'primeng/floatlabel';
+import {Fluid} from 'primeng/fluid';
 
 @Component({
-  selector: 'app-tip-dialog',
-  standalone: true,
+    selector: 'app-tip-dialog',
   imports: [
     DialogModule,
     ButtonModule,
@@ -18,43 +19,47 @@ import {MessageModule} from 'primeng/message';
     CommonModule,
     InputTextModule,
     InputNumberModule,
-    MessageModule
+    MessageModule,
+    FloatLabel,
+    Fluid
   ],
-  template: `
+    template: `
     <p-dialog header="Hinzufügen" [modal]="true"
               [(visible)]="visible" [style]="{width: '90vw'}"
               (onHide)="onCancel()">
-      <div *ngIf="tip" class="grid" style="padding-top: 1.2rem">
-        <div class="col-12 p-fluid">
-          <span class="p-float-label">
-            <input type="text" [disabled]="editMode" pInputText [(ngModel)]="tip.username">
-            <label>Name</label>
-          </span>
+      <p-fluid>
+        <div *ngIf="tip" class="flex items-center pt-5 grid grid-rows-4 gap-6">
+          <div>
+            <p-floatlabel>
+              <input type="text" [disabled]="editMode" pInputText [(ngModel)]="tip.username">
+              <label>Name</label>
+            </p-floatlabel>
+          </div>
+          <div>
+            <p-floatlabel>
+              <p-inputNumber [(ngModel)]="tip.days" mode="decimal" [min]="1" [showButtons]="false">
+              </p-inputNumber>
+              <label>Tage</label>
+            </p-floatlabel>
+          </div>
+          <div *ngIf="isUsernamePresent() && !editMode">
+            <p-message severity="info" text="Name bereits vorhanden!"
+                       styleClass="p-mr-2">
+            </p-message>
+          </div>
         </div>
-        <div class="col-12 p-fluid" style="padding-top: 1.2rem">
-          <span class="p-float-label">
-            <p-inputNumber [(ngModel)]="tip.days" mode="decimal" [min]="1" [showButtons]="false">
-            </p-inputNumber>
-            <label>Tage</label>
-          </span>
+        <div class="flex justify-end gap-2">
+          <p-button icon="pi pi-save" styleClass="p-button-primary"
+                    label="Speichern"
+                    [disabled]="tip?.days == null || tip?.username == null || (isUsernamePresent() && !editMode)"
+                    (onClick)="onSave()"
+          ></p-button>
+          <p-button icon="pi pi-times" styleClass="p-button-outlined"
+                    label="Abbrechen"
+                    (onClick)="onCancel()"
+          ></p-button>
         </div>
-        <div *ngIf="isUsernamePresent() && !editMode" class="col-12 p-fluid">
-          <p-message severity="info" text="Name bereits vorhanden!"
-                     styleClass="p-mr-2">
-          </p-message>
-        </div>
-      </div>
-      <p-footer>
-        <p-button icon="pi pi-save" styleClass="p-button-primary mr-2 mb-2"
-                  label="Speichern"
-                  [disabled]="tip?.days == null || tip?.username == null || (isUsernamePresent() && !editMode)"
-                  (onClick)="onSave()"
-        ></p-button>
-        <p-button icon="pi pi-times" styleClass="p-button-outlined mr-2 mb-2"
-                  label="Abbrechen"
-                  (onClick)="onCancel()"
-        ></p-button>
-      </p-footer>
+      </p-fluid>
     </p-dialog>
   `
 })

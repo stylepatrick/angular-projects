@@ -8,39 +8,53 @@ import {ButtonModule} from 'primeng/button';
 import {TipDialogComponent} from './tip-dialog.component';
 import {Tip} from '../models/tip';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {FloatLabel} from 'primeng/floatlabel';
+import {Fluid} from 'primeng/fluid';
 
 @Component({
   selector: 'app-tip',
-  standalone: true,
   imports: [
     FormsModule,
     ButtonModule,
     CommonModule,
     TipDialogComponent,
     InputNumberModule,
-    TableModule
+    TableModule,
+    FloatLabel,
+    Fluid
   ],
   template: `
-    <div class="card grid p-fluid">
-      <div class="col-12 md:col-6 lg:col-2" style="padding-top: 1em">
-        <span class="p-float-label">
-            <p-inputNumber [(ngModel)]="tipHead.totTip" mode="decimal" [min]="1"
-                           [maxFractionDigits]="2" [showButtons]="false"
-                           (ngModelChange)="updateTipHead()">
-            </p-inputNumber>
-            <label>Trinkgeld</label>
-          </span>
+    <div class="grid grid-rows-2 gap-4">
+      <div class="w-full md:w-1/2 lg:w-1/2">
+        <div class="grid grid-cols-2 gap-5 pt-5">
+          <div>
+            <p-fluid>
+              <div>
+                <p-floatlabel>
+                  <p-inputNumber [(ngModel)]="tipHead.totTip" mode="decimal" [min]="1"
+                                 [maxFractionDigits]="2" [showButtons]="false"
+                                 (ngModelChange)="updateTipHead()">
+                  </p-inputNumber>
+                  <label>Trinkgeld</label>
+                </p-floatlabel>
+              </div>
+            </p-fluid>
+          </div>
+          <div>
+            <p-fluid>
+              <div>
+                <p-floatlabel>
+                  <p-inputNumber [(ngModel)]="tipHead.totDays" mode="decimal" [showButtons]="false"
+                                 [disabled]="true">
+                  </p-inputNumber>
+                  <label>Gesamte Tage</label>
+                </p-floatlabel>
+              </div>
+            </p-fluid>
+          </div>
+        </div>
       </div>
-      <div class="col-12 md:col-6 lg:col-2" style="padding-top: 1em">
-        <span class="p-float-label">
-            <p-inputNumber [(ngModel)]="tipHead.totDays" mode="decimal" [showButtons]="false"
-                           [disabled]="true">
-            </p-inputNumber>
-            <label>Gesamte Tage</label>
-          </span>
-      </div>
-
-      <div class="col-12">
+      <div>
         <p-table [value]="tipHead?.tips"
                  [autoLayout]="true"
                  styleClass="p-datatable-sm p-datatable-striped">
