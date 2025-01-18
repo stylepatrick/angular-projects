@@ -24,65 +24,64 @@ import {Fluid} from 'primeng/fluid';
     Fluid
   ],
   template: `
-    <div class="grid grid-rows-2 gap-4">
-      <div class="w-full md:w-1/2 lg:w-1/2">
-        <div class="grid grid-cols-2 gap-5 pt-5">
-          <div>
-            <p-fluid>
-              <div>
-                <p-floatlabel>
-                  <p-inputNumber [(ngModel)]="tipHead.totTip" mode="decimal" [min]="1"
-                                 [maxFractionDigits]="2" [showButtons]="false"
-                                 (ngModelChange)="updateTipHead()">
-                  </p-inputNumber>
-                  <label>Trinkgeld</label>
-                </p-floatlabel>
-              </div>
-            </p-fluid>
-          </div>
-          <div>
-            <p-fluid>
-              <div>
-                <p-floatlabel>
-                  <p-inputNumber [(ngModel)]="tipHead.totDays" mode="decimal" [showButtons]="false"
-                                 [disabled]="true">
-                  </p-inputNumber>
-                  <label>Gesamte Tage</label>
-                </p-floatlabel>
-              </div>
-            </p-fluid>
-          </div>
+    <div class="w-full md:w-1/2 lg:w-1/2 pt-8">
+      <div class="grid grid-cols-2 gap-5">
+        <div>
+          <p-fluid>
+            <div>
+              <p-floatlabel>
+                <p-inputNumber [(ngModel)]="tipHead.totTip" mode="decimal" [min]="1"
+                               [maxFractionDigits]="2" [showButtons]="false"
+                               (ngModelChange)="updateTipHead()">
+                </p-inputNumber>
+                <label>Trinkgeld</label>
+              </p-floatlabel>
+            </div>
+          </p-fluid>
+        </div>
+        <div>
+          <p-fluid>
+            <div>
+              <p-floatlabel>
+                <p-inputNumber [(ngModel)]="tipHead.totDays" mode="decimal" [showButtons]="false"
+                               [disabled]="true">
+                </p-inputNumber>
+                <label>Gesamte Tage</label>
+              </p-floatlabel>
+            </div>
+          </p-fluid>
         </div>
       </div>
-      <div>
-        <p-table [value]="tipHead?.tips"
-                 [autoLayout]="true"
-                 styleClass="p-datatable-sm p-datatable-striped">
-          <ng-template pTemplate="header">
-            <tr>
-              <th>
-                <i class="pi pi-plus" (click)="onCreateTipDialog()"
-                   style="cursor: pointer; font-size: 1rem; color: green;"></i>
-              </th>
-              <th>Name</th>
-              <th>Tage</th>
-              <th>Trinkgeld</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-tip>
-            <tr>
-              <td>
-                <i class="pi pi-pencil" (click)="onEditTipDialog(tip)" style="cursor: pointer; font-size: 1rem"></i>
-                <i class="pi pi-times" (click)="onRemoveTip(tip)"
-                   style="cursor: pointer; font-size: 1rem; color: red; padding-left: .3rem"></i>
-              </td>
-              <td>{{ tip.username }}</td>
-              <td>{{ tip.days }}</td>
-              <td>{{ tip.amount | number : '1.2-2' }}</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+    </div>
+
+    <div class="pt-5">
+      <p-table [value]="tipHead?.tips"
+               [autoLayout]="true"
+               styleClass="p-datatable-sm p-datatable-striped">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>
+              <i class="pi pi-plus" (click)="onCreateTipDialog()"
+                 style="cursor: pointer; font-size: 1rem; color: green;"></i>
+            </th>
+            <th>Name</th>
+            <th>Tage</th>
+            <th>Trinkgeld</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tip>
+          <tr>
+            <td>
+              <i class="pi pi-pencil" (click)="onEditTipDialog(tip)" style="cursor: pointer; font-size: 1rem"></i>
+              <i class="pi pi-times" (click)="onRemoveTip(tip)"
+                 style="cursor: pointer; font-size: 1rem; color: red; padding-left: .3rem"></i>
+            </td>
+            <td>{{ tip.username }}</td>
+            <td>{{ tip.days }}</td>
+            <td>{{ tip.amount | number : '1.2-2' }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
 
     <app-tip-dialog [visible]="showTipDialog"
