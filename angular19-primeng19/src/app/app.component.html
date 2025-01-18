@@ -1,0 +1,41 @@
+<div class="p-5 grid grid-rows-1 grid-flow-col gap-4">
+  <div>
+    <div class="card flex flex-col items-center gap-4">
+      <div class="flex flex-wrap gap-4 justify-center">
+        <p-button icon="pi pi-home" aria-label="Save" />
+        <p-button label="Profile" icon="pi pi-user" />
+        <p-button label="Save" icon="pi pi-check" iconPos="right" />
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <p-button label="Search" icon="pi pi-search" iconPos="top" />
+        <p-button label="Update" icon="pi pi-refresh" iconPos="bottom" />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card flex flex-col gap-6">
+      <div>
+        <label for="non-fluid" class="font-bold mb-2 block">Non-Fluid</label>
+        <input type="text" pInputText id="non-fluid" />
+      </div>
+      <div>
+        <label for="fluid" class="font-bold mb-2 block">Fluid Prop</label>
+        <input type="text" pInputText id="fluid" fluid />
+      </div>
+      <p-fluid>
+        <span class="font-bold mb-2 block">Fluid Container</span>
+        <div class="grid grid-cols-2 gap-4">
+          <div><input type="text" pInputText /></div>
+          <div><input type="text" pInputText /></div>
+          <div class="col-span-full"><input type="text" pInputText /></div>
+          <div><input type="text" pInputText [fluid]="false" placeholder="Non-Fluid" /></div>
+        </div>
+      </p-fluid>
+    </div>
+  </div>
+</div>
+
+
+
+
+
